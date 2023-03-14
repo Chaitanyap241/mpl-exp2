@@ -1,0 +1,56 @@
+#include <iostream>
+
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *left, *right;
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+class BinaryTree {
+public:
+    Node *root;
+    BinaryTree() {
+        root = NULL;
+    }
+    void insert(int val) {
+        Node *newNode = new Node(val);
+        if (root == NULL) {
+            root = newNode;
+            return;
+        }
+        Node *current = root;
+        while (true) {
+            if (val < current->data) {
+                if (current->left == NULL) {
+                    current->left = newNode;
+                    break;
+                }
+                current = current->left;
+            } else {
+                if (current->right == NULL) {
+                    current->right = newNode;
+                    break;
+                }
+                current = current->right;
+            }
+        }
+    }
+};
+
+int main() {
+    BinaryTree bt;
+    bt.insert(50);
+    bt.insert(30);
+    bt.insert(20);
+    bt.insert(40);
+    bt.insert(70);
+    bt.insert(60);
+    bt.insert(80);
+    return 0;
+}
